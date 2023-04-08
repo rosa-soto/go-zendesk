@@ -91,7 +91,7 @@ func (c *client) SearchTickets(term string, options *ListOptions, filters ...Fil
 	return out, nil
 }
 
-func (c *client) SearchTicketsSideLoad(term string, options *ListOptions, sideload SideLoad, filters ...Filters) (*TicketSearchResults, error) {
+func (c *client) SearchTicketsSideLoad(term string, options *ListOptions, sideload SideLoad, filters ...Filters) (*TicketSearchSideLoadResults, error) {
 	params, err := query.Values(options)
 	if err != nil {
 		return nil, err
