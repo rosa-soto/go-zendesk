@@ -51,6 +51,7 @@ type Client interface {
 	RedactCommentString(int64, int64, string) (*TicketComment, error)
 	SearchOrganizationsByExternalID(string) ([]Organization, error)
 	SearchTickets(string, *ListOptions, ...Filters) (*TicketSearchResults, error)
+	SearchTicketsSideLoad(string, *ListOptions, SideLoad, ...Filters) (*TicketSearchSideLoadResults, error)
 	SearchUsers(string) ([]User, error)
 	SearchUserByExternalID(string) (*User, error)
 	ShowComplianceDeletionStatuses(int64) ([]ComplianceDeletionStatus, error)
@@ -319,6 +320,17 @@ type TicketSearchResults struct {
 	Count        *int64   `json:"count"`
 }
 
+// TicketSearchSideLoadResults represents returned results from the unified search api for type:ticket
+// given a query and include
+type TicketSearchSideLoadResults struct {
+	Results      []Ticket `json:"results"`
+	Users        []User   `json:"users,omitempty"`
+	Groups       []Group  `json:"groups,omitempty"`
+	NextPage     *string  `json:"next_page"`
+	PreviousPage *string  `json:"previous_page"`
+	Count        *int64   `json:"count"`
+}
+
 // APIError represents an error response returnted by the API.
 type APIError struct {
 	Response *http.Response
@@ -432,7 +444,7 @@ func IncludeGroups() SideLoad {
 	}
 }
 
-// IncludeCommentCount will include a top level array of groups
+// IncludeCommentCount will include comment count attribute in Ticket
 func IncludeCommentCount() SideLoad {
 	return func(c *SideLoadOptions) {
 		c.Include = append(c.Include, "comment_count")
