@@ -112,8 +112,9 @@ func (c *client) SearchTicketsSideLoad(term string, options *ListOptions, sidelo
 		params.Set("include", fmt.Sprintf("tickets(%s)", strings.Join(sideLoads.Include, ",")))
 	}
 	out := new(TicketSearchSideLoadResults)
-	err = c.get("/api/v2/search.json?"+params.Encode(), out)
-	fmt.Println("/api/v2/search.json?", params.Encode())
+	qu := "/api/v2/search.json?" + params.Encode()
+	err = c.get(qu, out)
+	fmt.Println(qu)
 	if err != nil {
 		return nil, err
 	}
