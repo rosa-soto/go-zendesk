@@ -114,7 +114,6 @@ func (c *client) SearchTicketsSideLoad(term string, options *ListOptions, sidelo
 	out := new(TicketSearchSideLoadResults)
 	qu := "/api/v2/search.json?" + params.Encode()
 	err = c.get(qu, out)
-	fmt.Println(qu)
 	if err != nil {
 		return nil, err
 	}
