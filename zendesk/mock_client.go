@@ -914,41 +914,8 @@ func (_m *MockClient) SearchOrganizationsByExternalID(_a0 string) ([]Organizatio
 	return r0, r1
 }
 
-// SearchTickets provides a mock function with given fields: _a0, _a1, _a2
-func (_m *MockClient) SearchTickets(_a0 string, _a1 *ListOptions, _a2 ...Filters) (*TicketSearchResults, error) {
-	_va := make([]interface{}, len(_a2))
-	for _i := range _a2 {
-		_va[_i] = _a2[_i]
-	}
-	var _ca []interface{}
-	_ca = append(_ca, _a0, _a1)
-	_ca = append(_ca, _va...)
-	ret := _m.Called(_ca...)
-
-	var r0 *TicketSearchResults
-	var r1 error
-	if rf, ok := ret.Get(0).(func(string, *ListOptions, ...Filters) (*TicketSearchResults, error)); ok {
-		return rf(_a0, _a1, _a2...)
-	}
-	if rf, ok := ret.Get(0).(func(string, *ListOptions, ...Filters) *TicketSearchResults); ok {
-		r0 = rf(_a0, _a1, _a2...)
-	} else {
-		if ret.Get(0) != nil {
-			r0 = ret.Get(0).(*TicketSearchResults)
-		}
-	}
-
-	if rf, ok := ret.Get(1).(func(string, *ListOptions, ...Filters) error); ok {
-		r1 = rf(_a0, _a1, _a2...)
-	} else {
-		r1 = ret.Error(1)
-	}
-
-	return r0, r1
-}
-
-// SearchTicketsSideLoad provides a mock function with given fields: _a0, _a1, _a2, _a3
-func (_m *MockClient) SearchTicketsSideLoad(_a0 string, _a1 *ListOptions, _a2 SideLoad, _a3 ...Filters) (*TicketSearchSideLoadResults, error) {
+// SearchTickets provides a mock function with given fields: _a0, _a1, _a2, _a3
+func (_m *MockClient) SearchTickets(_a0 string, _a1 *ListOptions, _a2 SideLoad, _a3 ...Filters) (*TicketSearchResults, error) {
 	_va := make([]interface{}, len(_a3))
 	for _i := range _a3 {
 		_va[_i] = _a3[_i]
@@ -958,16 +925,16 @@ func (_m *MockClient) SearchTicketsSideLoad(_a0 string, _a1 *ListOptions, _a2 Si
 	_ca = append(_ca, _va...)
 	ret := _m.Called(_ca...)
 
-	var r0 *TicketSearchSideLoadResults
+	var r0 *TicketSearchResults
 	var r1 error
-	if rf, ok := ret.Get(0).(func(string, *ListOptions, SideLoad, ...Filters) (*TicketSearchSideLoadResults, error)); ok {
+	if rf, ok := ret.Get(0).(func(string, *ListOptions, SideLoad, ...Filters) (*TicketSearchResults, error)); ok {
 		return rf(_a0, _a1, _a2, _a3...)
 	}
-	if rf, ok := ret.Get(0).(func(string, *ListOptions, SideLoad, ...Filters) *TicketSearchSideLoadResults); ok {
+	if rf, ok := ret.Get(0).(func(string, *ListOptions, SideLoad, ...Filters) *TicketSearchResults); ok {
 		r0 = rf(_a0, _a1, _a2, _a3...)
 	} else {
 		if ret.Get(0) != nil {
-			r0 = ret.Get(0).(*TicketSearchSideLoadResults)
+			r0 = ret.Get(0).(*TicketSearchResults)
 		}
 	}
 
