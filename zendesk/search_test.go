@@ -13,14 +13,14 @@ func TestSearchTicketsSideLoad(t *testing.T) {
 	client, err := NewEnvClient()
 	require.NoError(t, err)
 
-	v := ListOptions{
+	options := ListOptions{
 		Page:      0,
 		SortBy:    "",
 		SortOrder: "",
 	}
-	x := IncludeGroups()
-	y := StatusFilter(Status("OPEN"), LessThanOrEqualTo)
+	include := IncludeGroups()
+	status := StatusFilter(Status("OPEN"), LessThanOrEqualTo)
 
-	_, err = client.SearchTicketsSideLoad("", &v, x, y)
+	_, err = client.SearchTicketsSideLoad("", &options, include, status)
 	require.NoError(t, err)
 }
